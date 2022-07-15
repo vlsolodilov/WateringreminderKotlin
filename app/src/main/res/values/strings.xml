@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Watering reminder (Kotlin)</string>
+    <string name="calendar">Календарь</string>
+    <string name="settings">Настройки</string>
+    <string name="plants">Растения</string>
+    <string name="tasks">Задачи</string>
+    <string name="selectAll">Отметить все</string>
+    <string name="done">Выполнено</string>
+    <string name="interval">Интервал:</string>
+    <string name="day">дн.</string>
+    <string name="reminderTime">Время напоминания:</string>
+    <string name="lastAction">Последние действие:</string>
+    <string name="plantName">Название</string>
+    <string name="plantDescription">Описание</string>
+    <string name="plantCreationDate">Дата создания</string>
+    <string name="reminders">Напоминания</string>
+    <string name="addNewReminder">Добавить новое напоминание +</string>
+    <string name="save">Сохранить</string>
+    <string name="reminder">Напоминание</string>
+    <string name="reminderName">Название</string>
+    <string name="signalTime">Время сигнала</string>
+    <string name="signalInterval">Интервал</string>
+    <string name="reminderLastAction">Последнее выполнение</string>
+    <string name="delete">Удалить</string>
+    <string name="plantsTitle">Растения</string>
+    <string name="emptyName">Пустое название</string>
+    <string name="error">Ошибка</string>
+    <string name="emptyField">Заполните пустые поля</string>
+
+    <string-array name="reminders">
+        <item>Полив</item>
+        <item>Опрыскивание</item>
+        <item>Удобрение</item>
+        <item>Поворот</item>
+        <item>Обрезка</item>
+    </string-array>
 </resources>

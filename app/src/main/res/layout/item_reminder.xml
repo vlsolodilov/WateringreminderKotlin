@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/reminderName"
+            style="@style/RegularText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/lorem" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/reminderGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="32dp" />
+
+        <TextView
+            android:id="@+id/reminderIntervalText"
+            style="@style/RegularText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/interval"
+            app:layout_constraintStart_toStartOf="@+id/reminderGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/reminderName" />
+
+        <TextView
+            android:id="@+id/reminderInterval"
+            style="@style/RegularText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/reminderIntervalText"
+            app:layout_constraintStart_toEndOf="@+id/reminderIntervalText"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <TextView
+            android:id="@+id/reminderDayText"
+            style="@style/RegularText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@string/day"
+            app:layout_constraintBottom_toBottomOf="@+id/reminderIntervalText"
+            app:layout_constraintStart_toEndOf="@+id/reminderInterval" />
+
+        <TextView
+            android:id="@+id/reminderTimeText"
+            style="@style/RegularText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/reminderTime"
+            app:layout_constraintStart_toStartOf="@+id/reminderGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/reminderIntervalText" />
+
+        <TextView
+            android:id="@+id/reminderTime"
+            style="@style/RegularText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/reminderTimeText"
+            app:layout_constraintStart_toEndOf="@+id/reminderTimeText"
+            tools:text="@tools:sample/date/hhmm" />
+
+
+        <TextView
+            android:id="@+id/reminderLastActionText"
+            style="@style/RegularText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/lastAction"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/reminderGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/reminderTimeText" />
+
+
+        <TextView
+            android:id="@+id/reminderLastAction"
+            style="@style/RegularText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/reminderLastActionText"
+            app:layout_constraintStart_toEndOf="@+id/reminderLastActionText"
+            tools:text="@tools:sample/date/ddmmyy" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -16,6 +16,9 @@ interface PlantDao {
     @Query("SELECT * FROM plant_table WHERE NOT id =:tempId ORDER BY name")
     fun getPlantList(tempId: Long): Flow<List<PlantDb>>
 
+    @Update
+    suspend fun updatePlant(plantDb: PlantDb)
+
     @Query("DELETE FROM plant_table WHERE id =:id  ")
     suspend fun deletePlantById(id: Long)
 

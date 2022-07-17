@@ -27,4 +27,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(ReminderViewModel::class)
     fun bindReminderViewModel(viewModel: ReminderViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TaskListViewModel::class)
+    fun bindTaskListViewModel(viewModel: TaskListViewModel): ViewModel
 }

@@ -9,13 +9,12 @@ import com.solodilov.wateringreminderkotlin.extension.LiveEvent
 import com.solodilov.wateringreminderkotlin.extension.MutableLiveEvent
 import com.solodilov.wateringreminderkotlin.ui.DateTimeConverter
 import kotlinx.coroutines.*
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class PlantViewModel @Inject constructor(
     private val getPlantUseCase: GetPlantUseCase,
     private val savePlantUseCase: SavePlantUseCase,
+    private val updatePlantUseCase: UpdatePlantUseCase,
     private val deletePlantUseCase: DeletePlantUseCase,
     private val getReminderListWithPlantIdUseCase: GetReminderListWithPlantIdUseCase,
     private val saveAndDeleteTempRemindersUseCase: SaveAndDeleteTempRemindersUseCase,
@@ -106,7 +105,7 @@ class PlantViewModel @Inject constructor(
                         imageUri = uri,
                     )
                 }?.let { plant ->
-                    savePlantUseCase(plant)
+                    updatePlantUseCase(plant)
                     _savePlantSuccessEvent()
                 }
             } else {

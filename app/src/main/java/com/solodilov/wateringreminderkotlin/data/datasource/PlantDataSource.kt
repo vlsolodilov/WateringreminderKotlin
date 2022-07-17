@@ -8,5 +8,6 @@ interface PlantDataSource {
     suspend fun insertPlant(plantDb: PlantDb): Long
     suspend fun getPlantById(id: Long): PlantDb
     fun getPlantList(): Flow<List<PlantDb>>
+    suspend fun updatePlant(plantDb: PlantDb)
     suspend fun deletePlantById(id: Long)
 }

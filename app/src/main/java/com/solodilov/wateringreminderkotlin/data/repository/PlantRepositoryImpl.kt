@@ -26,6 +26,9 @@ class PlantRepositoryImpl @Inject constructor(
             }
         }
 
+    override suspend fun updatePlant(plant: Plant) =
+        dataSource.updatePlant(mapper.mapPlantToPlantDb(plant))
+
     override suspend fun deletePlantById(id: Long) =
         dataSource.deletePlantById(id)
 

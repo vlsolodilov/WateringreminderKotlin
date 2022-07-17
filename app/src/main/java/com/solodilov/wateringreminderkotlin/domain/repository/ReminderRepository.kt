@@ -7,8 +7,10 @@ interface ReminderRepository {
 
     suspend fun saveReminder(reminder: Reminder)
     suspend fun getReminderById(id: Long): Reminder
-    fun getReminderList(): Flow<List<Reminder>>
-    suspend fun deleteReminderById(id: Long)
-    suspend fun saveAndDeleteTempReminders(id: Long)
+    suspend fun getReminderList(): List<Reminder>
     fun getReminderListWithPlantId(plantId: Long): Flow<List<Reminder>>
+    suspend fun updateReminder(reminder: Reminder)
+    suspend fun saveAndDeleteTempReminders(id: Long)
+    suspend fun deleteReminderById(id: Long)
+
 }

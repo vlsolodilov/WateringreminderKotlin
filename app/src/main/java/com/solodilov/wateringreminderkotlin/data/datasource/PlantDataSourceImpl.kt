@@ -19,6 +19,9 @@ class PlantDataSourceImpl @Inject constructor(
     override fun getPlantList(): Flow<List<PlantDb>> =
         plantDAO.getPlantList(Plant.TEMP_ID)
 
+    override suspend fun updatePlant(plantDb: PlantDb) =
+        plantDAO.updatePlant(plantDb)
+
     override suspend fun deletePlantById(id: Long) =
         plantDAO.deletePlantById(id)
 }

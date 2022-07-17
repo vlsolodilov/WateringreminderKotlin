@@ -7,8 +7,10 @@ interface ReminderDataSource {
 
     suspend fun insertReminder(reminderDb: ReminderDb)
     suspend fun getReminderById(id: Long): ReminderDb
-    fun getReminderList(): Flow<List<ReminderDb>>
+    suspend fun getReminderList(): List<ReminderDb>
     fun getReminderListWithPlantId(plantId: Long): Flow<List<ReminderDb>>
-    suspend fun deleteReminderById(id: Long)
     suspend fun saveAndDeleteTempReminders(plantId: Long)
+    suspend fun updateReminder(reminderDb: ReminderDb)
+    suspend fun deleteReminderById(id: Long)
+
 }

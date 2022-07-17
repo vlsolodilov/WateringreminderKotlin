@@ -19,18 +19,10 @@ class ReminderRepositoryImpl @Inject constructor(
     override suspend fun getReminderById(id: Long): Reminder =
         mapper.mapReminderDbToReminder(dataSource.getReminderById(id))
 
-    override fun getReminderList(): Flow<List<Reminder>> =
-        dataSource.getReminderList().map { reminderDbList ->
-            reminderDbList.map { reminderDb ->
-                mapper.mapReminderDbToReminder(reminderDb)
-            }
+    override suspend fun getReminderList(): List<Reminder> =
+        dataSource.getReminderList().map { reminderDb ->
+            mapper.mapReminderDbToReminder(reminderDb)
         }
-
-    override suspend fun deleteReminderById(id: Long) =
-        dataSource.deleteReminderById(id)
-
-    override suspend fun saveAndDeleteTempReminders(id: Long) =
-        dataSource.saveAndDeleteTempReminders(id)
 
     override fun getReminderListWithPlantId(plantId: Long): Flow<List<Reminder>> =
         dataSource.getReminderListWithPlantId(plantId).map { reminderDbList ->
@@ -38,5 +30,16 @@ class ReminderRepositoryImpl @Inject constructor(
                 mapper.mapReminderDbToReminder(reminderDb)
             }
         }
+
+    override suspend fun saveAndDeleteTempReminders(id: Long) =
+        dataSource.saveAndDeleteTempReminders(id)
+
+    override suspend fun updateReminder(reminder: Reminder) =
+        dataSource.updateReminder(mapper.mapReminderToReminderDb(reminder))
+
+    override suspend fun deleteReminderById(id: Long) =
+        dataSource.deleteReminderById(id)
+
+
 
 }

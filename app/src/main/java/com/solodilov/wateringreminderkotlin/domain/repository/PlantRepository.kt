@@ -8,5 +8,6 @@ interface PlantRepository {
     suspend fun savePlant(plant: Plant): Long
     suspend fun getPlantById(id: Long): Plant
     fun getPlantList(): Flow<List<Plant>>
+    suspend fun updatePlant(plant: Plant)
     suspend fun deletePlantById(id: Long)
 }

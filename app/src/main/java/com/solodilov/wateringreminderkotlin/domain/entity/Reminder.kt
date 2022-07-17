@@ -7,7 +7,7 @@ data class Reminder(
     val name: String,
     val signalTime: Date,
     val signalPeriod: Int,
-    val lastSignalDate: Date,
+    var lastSignalDate: Date,
     val plantId: Long,
 ) {
     companion object {

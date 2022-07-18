@@ -32,4 +32,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(TaskListViewModel::class)
     fun bindTaskListViewModel(viewModel: TaskListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CalendarViewModel::class)
+    fun bindCalendarViewModel(viewModel: CalendarViewModel): ViewModel
 }

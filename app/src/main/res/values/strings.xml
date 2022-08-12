@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Watering reminder (Kotlin)</string>
+    <string name="app_name">Watering reminder</string>
     <string name="calendar">Календарь</string>
     <string name="settings">Настройки</string>
     <string name="plants">Растения</string>
@@ -26,6 +26,10 @@
     <string name="emptyName">Пустое название</string>
     <string name="error">Ошибка</string>
     <string name="emptyField">Заполните пустые поля</string>
+    <string name="notTaskToday">На сегодня нет напоминаний</string>
+    <string name="notTask">Нет задач</string>
+    <string name="notification_title">Water reminder</string>
+    <string name="notification_subtitle">Некоторым растениям нужен уход</string>
 
     <string-array name="reminders">
         <item>Полив</item>

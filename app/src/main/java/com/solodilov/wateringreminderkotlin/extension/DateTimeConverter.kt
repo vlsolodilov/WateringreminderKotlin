@@ -1,4 +1,4 @@
-package com.solodilov.wateringreminderkotlin.ui
+package com.solodilov.wateringreminderkotlin.extension
 
 import java.text.SimpleDateFormat
 import java.util.*

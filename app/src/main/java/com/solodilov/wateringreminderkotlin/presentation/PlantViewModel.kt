@@ -7,7 +7,7 @@ import com.solodilov.wateringreminderkotlin.domain.entity.Reminder
 import com.solodilov.wateringreminderkotlin.domain.usecase.*
 import com.solodilov.wateringreminderkotlin.extension.LiveEvent
 import com.solodilov.wateringreminderkotlin.extension.MutableLiveEvent
-import com.solodilov.wateringreminderkotlin.ui.DateTimeConverter
+import com.solodilov.wateringreminderkotlin.extension.DateTimeConverter
 import kotlinx.coroutines.*
 import javax.inject.Inject
 

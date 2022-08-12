@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.solodilov.wateringreminderkotlin.databinding.ItemReminderBinding
 import com.solodilov.wateringreminderkotlin.domain.entity.Reminder
-import com.solodilov.wateringreminderkotlin.ui.DateTimeConverter
+import com.solodilov.wateringreminderkotlin.extension.DateTimeConverter
 
 class ReminderAdapter(private val onClick: (Reminder) -> Unit) :
     RecyclerView.Adapter<ReminderItemViewHolder>() {

@@ -16,7 +16,7 @@ import com.solodilov.wateringreminderkotlin.R
 import com.solodilov.wateringreminderkotlin.databinding.FragmentPlantBinding
 import com.solodilov.wateringreminderkotlin.domain.entity.Plant
 import com.solodilov.wateringreminderkotlin.presentation.PlantViewModel
-import com.solodilov.wateringreminderkotlin.ui.DateTimeConverter
+import com.solodilov.wateringreminderkotlin.extension.DateTimeConverter
 import com.solodilov.wateringreminderkotlin.ui.adapter.ReminderAdapter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -223,6 +223,7 @@ class PlantFragment : Fragment() {
     override fun onDestroyView() {
         reminderAdapter = null
         _binding = null
+        Log.d("TAG", "onDestroyView: PlantFragment")
         super.onDestroyView()
     }
 }

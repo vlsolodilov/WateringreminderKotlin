@@ -6,9 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.solodilov.wateringreminderkotlin.MainApplication
+import com.solodilov.wateringreminderkotlin.R
 import com.solodilov.wateringreminderkotlin.databinding.FragmentCalendarBinding
 import com.solodilov.wateringreminderkotlin.presentation.CalendarViewModel
 import com.solodilov.wateringreminderkotlin.ui.adapter.CalendarAdapter
@@ -62,10 +65,26 @@ class CalendarFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        viewModel.loading.observe(viewLifecycleOwner, ::toggleProgress)
         viewModel.calendarItemList.observe(viewLifecycleOwner) { calendarItems ->
             calendarAdapter?.calendarItemList = calendarItems
+            toggleShowCalendarList(calendarItems.isNotEmpty())
             Log.d("TAG", "observeViewModel: Calendar")
         }
+        viewModel.calendarErrorEvent.observe(viewLifecycleOwner) { showError() }
+    }
+
+    private fun toggleProgress(visible: Boolean) {
+        binding.calendarLoading.isVisible = visible
+    }
+
+    private fun toggleShowCalendarList(visible: Boolean) {
+        binding.calendarList.isVisible = visible
+        binding.emptyCalendar.isVisible = !visible
+    }
+
+    private fun showError() {
+        Snackbar.make(binding.root, R.string.error, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

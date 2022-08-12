@@ -6,9 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.solodilov.wateringreminderkotlin.MainApplication
+import com.solodilov.wateringreminderkotlin.R
 import com.solodilov.wateringreminderkotlin.databinding.FragmentTasksBinding
 import com.solodilov.wateringreminderkotlin.presentation.TaskListViewModel
 import com.solodilov.wateringreminderkotlin.ui.adapter.TaskAdapter
@@ -67,15 +70,32 @@ class TaskListFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        viewModel.loading.observe(viewLifecycleOwner, ::toggleProgress)
         viewModel.taskList.observe(viewLifecycleOwner) { tasks ->
             taskAdapter?.submitList(tasks)
+            toggleShowTaskList(tasks.isNotEmpty())
             Log.d("TAG", "observeViewModel: ")
         }
+        viewModel.tasksErrorEvent.observe(viewLifecycleOwner) { showError() }
+    }
+
+    private fun toggleProgress(visible: Boolean) {
+        binding.taskListLoading.isVisible = visible
+    }
+
+    private fun toggleShowTaskList(visible: Boolean) {
+        binding.taskList.isVisible = visible
+        binding.emptyTaskList.isVisible = !visible
+    }
+
+    private fun showError() {
+        Snackbar.make(binding.root, R.string.error, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
         taskAdapter = null
         _binding = null
+        Log.d("TAG", "onDestroyView: TaskListFragment")
         super.onDestroyView()
     }
 }

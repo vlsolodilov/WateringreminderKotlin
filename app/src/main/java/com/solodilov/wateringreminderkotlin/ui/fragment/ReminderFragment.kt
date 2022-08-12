@@ -2,9 +2,11 @@ package com.solodilov.wateringreminderkotlin.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +20,8 @@ import com.solodilov.wateringreminderkotlin.databinding.FragmentReminderBinding
 import com.solodilov.wateringreminderkotlin.domain.entity.Plant
 import com.solodilov.wateringreminderkotlin.domain.entity.Reminder
 import com.solodilov.wateringreminderkotlin.presentation.ReminderViewModel
-import com.solodilov.wateringreminderkotlin.ui.DateTimeConverter
+import com.solodilov.wateringreminderkotlin.extension.DateTimeConverter
+import java.lang.reflect.Array
 import java.util.*
 import javax.inject.Inject
 
@@ -167,6 +170,11 @@ class ReminderFragment : Fragment() {
     private fun initViews() {
         binding.signalTime.setOnClickListener { selectSignalTime() }
         binding.lastSignalDate.setOnClickListener { selectLastSignalDate() }
+        binding.reminderName.setAdapter(ArrayAdapter(
+            requireActivity(),
+            android.R.layout.simple_dropdown_item_1line,
+            resources.getStringArray(R.array.reminders)
+        ))
     }
 
     private fun observeViewModel() {
@@ -230,6 +238,7 @@ class ReminderFragment : Fragment() {
 
     override fun onDestroyView() {
         _binding = null
+        Log.d("TAG", "onDestroyView: ReminderFragment")
         super.onDestroyView()
     }
 }

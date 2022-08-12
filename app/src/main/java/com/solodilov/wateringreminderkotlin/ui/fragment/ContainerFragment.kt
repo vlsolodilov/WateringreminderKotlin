@@ -75,15 +75,9 @@ class ContainerFragment : Fragment() {
 
     }
 
-    fun startPlantList() {
-        binding.bottomNavigation.selectedItemId = R.id.menuPlants
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
     override fun onDestroyView() {
         _binding = null
+        Log.d("TAG", "onDestroyView: ContainerFragment")
         super.onDestroyView()
     }
 }

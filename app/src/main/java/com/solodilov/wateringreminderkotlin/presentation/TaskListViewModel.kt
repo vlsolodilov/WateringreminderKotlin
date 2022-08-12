@@ -1,8 +1,13 @@
 package com.solodilov.wateringreminderkotlin.presentation
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.solodilov.wateringreminderkotlin.domain.usecase.*
+import com.solodilov.wateringreminderkotlin.extension.LiveEvent
+import com.solodilov.wateringreminderkotlin.extension.MutableLiveEvent
+import com.solodilov.wateringreminderkotlin.extension.addDays
+import com.solodilov.wateringreminderkotlin.presentation.notification.AlarmUtil
 import kotlinx.coroutines.*
 import java.util.*
 import javax.inject.Inject
@@ -12,6 +17,7 @@ class TaskListViewModel @Inject constructor(
     private val getPlantUseCase: GetPlantUseCase,
     private val getReminderUseCase: GetReminderUseCase,
     private val updateReminderUseCase: UpdateReminderUseCase,
+    private val application: Application,
 ) : ViewModel() {
 
     private val _loading = MutableLiveData(false)
@@ -20,6 +26,8 @@ class TaskListViewModel @Inject constructor(
     private val _taskList = MutableLiveData<List<Task>>()
     val taskList: LiveData<List<Task>> = _taskList
 
+    private val _tasksErrorEvent = MutableLiveEvent()
+    val tasksErrorEvent: LiveEvent = _tasksErrorEvent
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         handleError(throwable)
@@ -31,6 +39,7 @@ class TaskListViewModel @Inject constructor(
 
     private fun getTaskList() {
         viewModelScope.launch(exceptionHandler) {
+            _loading.value = true
             val reminderList = getReminderListUseCase()
             val currentTime = Date()
             val tasks: MutableList<Task> = mutableListOf()
@@ -48,6 +57,7 @@ class TaskListViewModel @Inject constructor(
                 }
             }
             _taskList.value = tasks
+            _loading.value = false
             Log.d("TAG", "getTaskList: $tasks")
         }
     }
@@ -73,12 +83,15 @@ class TaskListViewModel @Inject constructor(
 
     fun executeSelectedTask() {
         viewModelScope.launch(exceptionHandler) {
+            _loading.value = true
             _taskList.value?.filter { task -> task.isSelect }?.map { task ->
                 val reminder = getReminderUseCase(task.reminderId)
                 reminder.lastSignalDate = getCurrentDate()
                 updateReminderUseCase(reminder)
+                AlarmUtil.setAlarm(application, reminder)
             }
             getTaskList()
+            _loading.value = false
         }
 
         Log.d("TAG", "executeSelectedTask: ${_taskList.value}")
@@ -96,15 +109,8 @@ class TaskListViewModel @Inject constructor(
     private fun handleError(error: Throwable) {
         Log.d("TAG", "handleError: $error")
         _loading.value = false
+        _tasksErrorEvent()
     }
-}
-
-private fun Date.addDays(days: Int): Date {
-    val calendar = Calendar.getInstance()
-    calendar.time = this
-    calendar.add(Calendar.DATE, days)
-
-    return calendar.time
 }
 
 data class Task(

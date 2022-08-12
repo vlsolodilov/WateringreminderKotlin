@@ -89,6 +89,7 @@ class PlantListFragment : Fragment() {
         override fun onDestroyView() {
         plantAdapter = null
         _binding = null
+            Log.d("TAG", "onDestroyView: PlantListFragment")
         super.onDestroyView()
     }
 }

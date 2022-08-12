@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.solodilov.wateringreminderkotlin.databinding.ItemCalendarBinding
 import com.solodilov.wateringreminderkotlin.presentation.CalendarItem
-import com.solodilov.wateringreminderkotlin.ui.DateTimeConverter
+import com.solodilov.wateringreminderkotlin.extension.DateTimeConverter
 
 class CalendarAdapter : RecyclerView.Adapter<CalendarItemViewHolder>() {
 
